@@ -1,0 +1,167 @@
+* {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background-color: #FFF8E7;
+    }
+
+    .container {
+      max-width: 420px;
+      margin: 0 auto;
+      background-color: #fffaf1;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      /* 追加する背景画像の指定 */
+      background-image: url('melab_background.png'); /* ← パスは正しく設定 */
+      background-repeat: no-repeat;
+      background-position: bottom right;
+      background-size: 38%; /* 適宜調整 */
+    }
+
+
+    header {
+      background: linear-gradient(to right, #c3f8b2, #84b6f4);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7vh 5vw 2vh 5vw; /* 上下にレスポンシブな余白を */
+      font-weight: bold;
+    }
+
+    .header-title {
+      color: #FFF;
+      font-family: "SF Pro Text", sans-serif;
+      font-size: clamp(16px, 4vw, 20px); /* 小さい画面では16px、大きくても20px */
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      padding-bottom: 0.5vh; /* 下余白は相対単位で調整 */
+    }
+
+
+    .back, .menu {
+      font-size: 6vw;
+    }
+
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 5vh 0 2vh;
+      justify-content: center;
+    }
+
+    .step-indicator p {
+      color: #76d05a;
+      font-weight: bold;
+      font-size: 4.5vw;
+    }
+
+    .progress {
+      width: 30%;
+      height: 10px;
+      background-color: #eee;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .bar.step1 {
+      width: 33%;
+      background-color: #c1f2a5;
+      height: 100%;
+    }
+
+    .bar.step2 {
+        width: 66%; /* 2/3進捗 */
+        background-color: #f4e796; /* 薄い黄色 */
+        height: 100%;
+    }
+
+    .bar.step3 {
+    width: 100%;
+    background-color: #edbc9c; /* オレンジ系の色 */
+    height: 100%;
+    border-radius: 50px; /* 端を丸くする */
+    }
+
+
+    .question {
+      color: #A0855E;
+      text-align: center;
+      font-size: 4.3vw;
+      font-weight: 600;
+      line-height: 1.6;
+      padding: 5% 5%;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 5% 5%;
+    }
+
+    .choice {
+      font-size: 4vw;
+      padding: 14px 8px 14px 14px;
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      text-align: left;
+      transition: 0.2s;
+    }
+
+    .choice:hover {
+      transform: translateY(-2px);
+    }
+
+    .choice.red {
+      background: #fff;
+      color: #FF9494;
+      border: 2px solid #ffcdd2;
+    }
+
+    .choice.blue {
+      background: #fff;
+      color: #87B9FF;
+      border: 2px solid #bbdefb;
+    }
+
+    .choice.orange {
+      background: #fff;
+      color: #FFC78E;
+      border: 2px solid #ffe0b2;
+    }
+
+    /* ------- メディアクエリ ------- */
+    @media (min-width: 768px) {
+      .header-title {
+        font-size: 20px;
+      }
+
+      .choice {
+        font-size: 16px;
+      }
+
+      .question {
+        font-size: 18px;
+      }
+
+      .step-indicator p {
+        font-size: 16px;
+      }
+
+      .back, .menu {
+        font-size: 20px;
+      }
+    }

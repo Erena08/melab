@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MeLAB診断 - STEP1</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="back">←</span>
+      <h1 class="header-title">MeLAB</h1>
+      <span class="menu">☰</span>
+    </header>
+
+    <div class="step-indicator">
+      <p style="color: #69c14d;">STEP1</p>
+      <div class="progress">
+        <div class="bar step1"></div>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>実験装置が突然止まった！<br>どうやらトラブルが起きたようです。<br>あなたはどうする？</p>
+    </div>
+
+    <div class="choices">
+      <button class="choice red" data-choice="A">A：すぐに周囲の研究者に相談する</button>
+      <button class="choice blue" data-choice="B">B：マニュアルを見ながら自分で原因を探す</button>
+      <button class="choice orange" data-choice="C">C：まず装置をリセットして、様子をみる</button>
+    </div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll(".choice");
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        const choice = button.dataset.choice;
+        localStorage.setItem("answer1", choice);
+        window.location.href = "step2.html";
+      });
+    });
+  </script>
+</body>
+</html>

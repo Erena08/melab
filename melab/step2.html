@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MeLAB診断 - STEP2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="back" onclick="goBackToStep1()">←</span>
+      <h1 class="header-title">MeLAB</h1>
+      <span class="menu">☰</span>
+    </header>
+
+    <div class="step-indicator">
+      <p style="color: #d5ca7b;">STEP2</p>
+      <div class="progress">
+        <div class="bar step2"></div>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>実験の新しい材料が届いた！<br>けど使い方は不明…<br>あなたならどうする？</p>
+    </div>
+
+    <div class="choices">
+      <button class="choice red" data-choice="A">A：安全性が心配なので触らずに報告する</button>
+      <button class="choice blue" data-choice="B">B：少しだけ試してみて、反応を見る</button>
+      <button class="choice orange" data-choice="C">C：面白そうだから自由に実験してみる！</button>
+    </div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll(".choice");
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        const choice = button.dataset.choice;
+        localStorage.setItem("answer2", choice);
+        window.location.href = "step3.html";
+      });
+    });
+
+    function goBackToStep1() {
+      localStorage.removeItem("answer1");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

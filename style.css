@@ -33,7 +33,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 7vh 5vw 2vh 5vw; /* 上下にレスポンシブな余白を */
+      padding: 5vh 5vw 1.5vh 5vw; /* 上下にレスポンシブな余白を */
       font-weight: bold;
     }
 

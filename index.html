@@ -2,106 +2,107 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 重要：iPhoneのセーフエリアを使う -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>MeLAB 診断</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
+    /* ===== Base ===== */
+    * { box-sizing: border-box; }
+    html, body {
+      height: auto;
+      min-height: 100dvh;               /* 100vhより安定 */
       margin: 0;
       padding: 0;
-      height: 100vh;
-      font-family: 'Inter', sans-serif;
+      -webkit-text-size-adjust: 100%;
       background-color: #fffaf1;
-      position: relative;
     }
 
-    .bg-top,
-    .bg-bottom {
-      position: absolute;
+    /* ===== Background (装飾) ===== */
+    .bg-top, .bg-bottom {
+      position: fixed;                  /* ビューポートに固定 */
+      left: 0;
       width: 100%;
-      z-index: 0;
+      z-index: 0;                       /* コンテンツの背面 */
+      pointer-events: none;             /* タップ判定を奪わない */
+      user-select: none;
     }
+    .bg-top   { top: 0; }
+    .bg-bottom{ bottom: 0; }
 
-    .bg-top {
-      top: 0;
-    }
-
-    .bg-bottom {
-      bottom: 0;
-    }
-
-    img.hex-top {
-      width: 100%;
-      max-width: 250px;
+    .hex-top, .hex-bottom {
+      width: min(70%, 320px);           /* 画面に応じて縮む */
       height: auto;
       display: block;
-      margin-left: auto;
+      opacity: .9;
     }
+    .hex-top   { margin: 2vh 2vw 0 auto; }   /* 右上寄せ */
+    .hex-bottom{ margin: 0 auto 2vh 2vw; }   /* 左下寄せ */
 
-    img.hex-bottom {
-      width: 100%;
-      max-width: 300px;
-      height: auto;
-      display: block;
-      margin-right: auto;
-    }
-
+    /* ===== Content ===== */
     .container {
       max-width: 420px;
       margin: 0 auto;
-      min-height: 100vh;
+      min-height: 100dvh;               /* 実表示高ベースで全高を確保 */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-      z-index: 1;
-      overflow: hidden;
+      z-index: 1;                        /* 背景より前面 */
+      padding: 16vh 5vw
+               calc(24px + env(safe-area-inset-bottom)) 5vw; /* 下端の被り防止 */
+      gap: 20px;
+      overflow: visible;                 /* 必要ならスクロールに切替可 */
     }
 
     .logo {
-      font-size: 1.2rem;
+      font-size: clamp(20px, 6vw, 28px);
       color: #7a91d2;
-      font-weight: bold;
-      margin-bottom: 20px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      text-align: center;
     }
 
     .start-button {
-      background-color: white;
+      background-color: #fff;
       border: 2px solid #7a91d2;
       color: #7a91d2;
-      font-size: 1.2rem;
-      font-weight: bold;
-      padding: 15px 30px;
+      font-size: clamp(16px, 4.8vw, 20px);
+      font-weight: 700;
+      padding: 14px 28px;
       border-radius: 12px;
-      box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 6px 16px rgba(0,0,0,.12);
       cursor: pointer;
-      transition: 0.2s;
+      transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+      touch-action: manipulation;
     }
+    .start-button:active { transform: translateY(1px); }
+    .start-button:hover  { background-color: #eef1ff; }
 
-    .start-button:hover {
-      background-color: #eef1ff;
+    /* 余白が足りない端末でも下が切れにくいよう保険 */
+    @media (max-height: 620px) {
+      .container {
+        justify-content: flex-start;
+        padding-top: 10vh;
+      }
     }
   </style>
 </head>
 <body>
   <!-- 上の背景 -->
   <div class="bg-top">
-    <img src="hexagon1.png" alt="top hex" class="hex-top" />
+    <img src="hexagon1.png" alt="" class="hex-top" />
   </div>
 
   <!-- 中央の内容 -->
-  <div class="container">
-    <div class="logo">MeLAB</div>
+  <main class="container">
+    <h1 class="logo">MeLAB</h1>
     <button class="start-button" onclick="location.href='step1.html'">診断スタート</button>
-  </div>
+  </main>
 
   <!-- 下の背景 -->
   <div class="bg-bottom">
-    <img src="hexagon2.png" alt="bottom hex" class="hex-bottom" />
+    <img src="hexagon2.png" alt="" class="hex-bottom" />
   </div>
 </body>
 </html>

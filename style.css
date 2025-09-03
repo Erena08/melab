@@ -83,7 +83,7 @@ header {
 }
 
 .progress {
-  width: min(40%, 280px);          /* 画面幅に応じて自動調整 */
+  width: min(25%, 280px);          /* 画面幅に応じて自動調整 */
   height: 10px;
   background-color: #eee;
   border-radius: 999px;
@@ -138,7 +138,7 @@ header {
 @media (min-width: 480px) {
   .container { background-size: 34%; }
   .step-indicator { gap: 12px; }
-  .progress { width: min(55%, 320px); }
+  .progress { width: min(35%, 320px); }
 }
 
 /* 768px〜：タブレット向け */

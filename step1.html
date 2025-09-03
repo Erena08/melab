@@ -15,20 +15,20 @@
     </header>
 
     <div class="step-indicator">
-      <p style="color: #d5ca7b;">STEP2</p>
+      <p style="color: #69c14d;">STEP1</p>
       <div class="progress">
-        <div class="bar step2"></div>
+        <div class="bar step1"></div>
       </div>
     </div>
 
     <div class="question">
-      <p>実験の新しい材料が届いた！<br>けど使い方は不明…<br>あなたならどうする？</p>
+     <p>実験装置が突然止まった！<br>どうやらトラブルが起きたようです。<br>あなたはどうする？</p>
     </div>
 
     <div class="choices">
-      <button class="choice red" data-choice="A">A：安全性が心配なので触らずに報告する</button>
-      <button class="choice blue" data-choice="B">B：少しだけ試してみて、反応を見る</button>
-      <button class="choice orange" data-choice="C">C：面白そうだから自由に実験してみる！</button>
+     <button class="choice red" data-choice="A">A：すぐに周囲の研究者に相談する</button>
+      <button class="choice blue" data-choice="B">B：マニュアルを見ながら自分で原因を探す</button>
+      <button class="choice orange" data-choice="C">C：まず装置をリセットして、様子をみる</button>
     </div>
   </div>
 
@@ -37,14 +37,14 @@
     buttons.forEach(button => {
       button.addEventListener("click", () => {
         const choice = button.dataset.choice;
-        localStorage.setItem("answer2", choice);
-        window.location.href = "step3.html";
+        localStorage.setItem("answer1", choice);
+        window.location.href = "step2.html";
       });
     });
 
     function goBackToStep1() {
-      localStorage.removeItem("answer2");
-      window.location.href = "step1.html";
+      localStorage.removeItem("answer1");
+      window.location.href = "index.html";
     }
   </script>
 </body>

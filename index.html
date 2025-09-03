@@ -3,56 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MeLAB診断 - STEP1</title>
-  <link rel="stylesheet" href="style.css" />
-   <script>
-    // 初期ロード時に --vh を計算
-    function setVh() {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
+  <title>MeLAB 診断</title>
+  <style>
+    * {
+      box-sizing: border-box;
     }
 
-    setVh();
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background-color: #FFF8E7;
+      position: relative;
+    }
 
-    // リサイズ時にも再計算（画面回転やツールバーの表示で変化する）
-    window.addEventListener('resize', setVh);
-  </script>
+    .bg-top,
+    .bg-bottom {
+      position: absolute;
+      width: 100%;
+      z-index: 0;
+    }
+
+    .bg-top {
+      top: 0;
+    }
+
+    .bg-bottom {
+      bottom: 0;
+    }
+
+    img.hex-top {
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      display: block;
+      margin-left: auto;
+    }
+
+    img.hex-bottom {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      display: block;
+      margin-right: auto;
+    }
+
+    .container {
+      max-width: 420px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      color: #7a91d2;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .start-button {
+      background-color: white;
+      border: 2px solid #7a91d2;
+      color: #7a91d2;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 15px 30px;
+      border-radius: 12px;
+      box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .start-button:hover {
+      background-color: #eef1ff;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <span class="back">←</span>
-      <h1 class="header-title">MeLAB</h1>
-      <span class="menu">☰</span>
-    </header>
-
-    <div class="step-indicator">
-      <p style="color: #69c14d;">STEP1</p>
-      <div class="progress">
-        <div class="bar step1"></div>
-      </div>
-    </div>
-
-    <div class="question">
-      <p>実験装置が突然止まった！<br>どうやらトラブルが起きたようです。<br>あなたはどうする？</p>
-    </div>
-
-    <div class="choices">
-      <button class="choice red" data-choice="A">A：すぐに周囲の研究者に相談する</button>
-      <button class="choice blue" data-choice="B">B：マニュアルを見ながら自分で原因を探す</button>
-      <button class="choice orange" data-choice="C">C：まず装置をリセットして、様子をみる</button>
-    </div>
+  <!-- 上の背景 -->
+  <div class="bg-top">
+    <img src="hexagon1.png" alt="top hex" class="hex-top" />
   </div>
 
-  <script>
-    const buttons = document.querySelectorAll(".choice");
-    buttons.forEach(button => {
-      button.addEventListener("click", () => {
-        const choice = button.dataset.choice;
-        localStorage.setItem("answer1", choice);
-        window.location.href = "step2.html";
-      });
-    });
-  </script>
+  <!-- 中央の内容 -->
+  <div class="container">
+    <div class="logo">MeLAB</div>
+    <button class="start-button" onclick="location.href='step1.html'">診断スタート</button>
+  </div>
+
+  <!-- 下の背景 -->
+  <div class="bg-bottom">
+    <img src="hexagon2.png" alt="bottom hex" class="hex-bottom" />
+  </div>
 </body>
 </html>

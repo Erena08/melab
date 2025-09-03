@@ -1,168 +1,150 @@
-* {
-      box-sizing: border-box;
-    }
+/* ===== Reset / Base ===== */
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      font-family: 'Inter', sans-serif;
-      background-color: #FFF8E7;
-    }
+html, body {
+  height: auto;
+  min-height: 100dvh;              /* アドレスバーを除いた実表示高 */
+}
 
-    .container {
-      max-width: 420px;
-      margin: 0 auto;
-      background-color: #fffaf1;
-      min-height: 100svh;
-      height: calc(var(--vh, 1vh) * 100);
-      display: flex;
-      flex-direction: column;
-      position: relative;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  background-color: #FFF8E7;
+  -webkit-text-size-adjust: 100%;
+}
 
-      /* 追加する背景画像の指定 */
-      background-image: url('melab_background.png'); /* ← パスは正しく設定 */
-      background-repeat: no-repeat;
-      background-position: bottom right;
-      background-size: 38%; /* 適宜調整 */
-    }
+/* ===== Layout ===== */
+.container {
+  max-width: 420px;
+  margin: 0 auto;
+  background-color: #fffaf1;
 
+  /* 高さは“今見えている高さ”基準で確保（vh 不要） */
+  min-height: 100dvh;
 
-    header {
-      background: linear-gradient(to right, #c3f8b2, #84b6f4);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 5vh 5vw 1.5vh 5vw; /* 上下にレスポンシブな余白を */
-      font-weight: bold;
-    }
+  display: flex;
+  flex-direction: column;
+  position: relative;
 
-    .header-title {
-      color: #FFF;
-      font-family: "SF Pro Text", sans-serif;
-      font-size: clamp(16px, 4vw, 20px); /* 小さい画面では16px、大きくても20px */
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-      padding-bottom: 0.5vh; /* 下余白は相対単位で調整 */
-    }
+  /* 背景イラスト */
+  background-image: url('melab_background.png');
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: 38%;
+}
 
+/* ===== Header ===== */
+header {
+  background: linear-gradient(to right, #c3f8b2, #84b6f4);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    .back, .menu {
-      font-size: 6vw;
-    }
+  /* 端末に合わせて上下余白を可変。過剰にならないよう上限を設定 */
+  padding: clamp(10px, 5vh, 24px) 5vw clamp(6px, 1.5vh, 16px) 5vw;
+  font-weight: bold;
+}
 
-    .step-indicator {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 5vh 0 2vh;
-      justify-content: center;
-    }
+.header-title {
+  color: #FFF;
+  font-family: "SF Pro Text", "Inter", system-ui, sans-serif;
+  font-size: clamp(16px, 4vw, 20px);
+  font-weight: 700;
+  line-height: 1.1;
+  padding-bottom: 0.5rem;
+}
 
-    .step-indicator p {
-      color: #76d05a;
-      font-weight: bold;
-      font-size: 4.5vw;
-    }
+.back, .menu {
+  /* アイコン等に合わせて可変 */
+  font-size: clamp(18px, 6vw, 20px);
+}
 
-    .progress {
-      width: 30%;
-      height: 10px;
-      background-color: #eee;
-      border-radius: 5px;
-      overflow: hidden;
-    }
+/* ===== Step Indicator ===== */
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 5vh 0 2vh;
+  justify-content: center;
+}
 
-    .bar.step1 {
-      width: 33%;
-      background-color: #c1f2a5;
-      height: 100%;
-    }
+.step-indicator p {
+  color: #76d05a;
+  font-weight: bold;
+  font-size: clamp(14px, 4.5vw, 16px);
+}
 
-    .bar.step2 {
-        width: 66%; /* 2/3進捗 */
-        background-color: #f4e796; /* 薄い黄色 */
-        height: 100%;
-    }
+.progress {
+  width: min(60%, 280px);          /* 画面幅に応じて自動調整 */
+  height: 10px;
+  background-color: #eee;
+  border-radius: 999px;
+  overflow: hidden;
+}
 
-    .bar.step3 {
-    width: 100%;
-    background-color: #edbc9c; /* オレンジ系の色 */
-    height: 100%;
-    border-radius: 50px; /* 端を丸くする */
-    }
+.bar { height: 100%; }
+.bar.step1 { width: 33%; background-color: #c1f2a5; }
+.bar.step2 { width: 66%; background-color: #f4e796; }
+.bar.step3 { width: 100%; background-color: #edbc9c; }
 
+/* ===== Question & Choices ===== */
+.question {
+  color: #A0855E;
+  text-align: center;
+  font-size: clamp(16px, 4.3vw, 18px);
+  font-weight: 600;
+  line-height: 1.6;
+  padding: 5% 5%;
+}
 
-    .question {
-      color: #A0855E;
-      text-align: center;
-      font-size: 4.3vw;
-      font-weight: 600;
-      line-height: 1.6;
-      padding: 5% 5%;
-    }
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 5% 5%;
+}
 
-    .choices {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 5% 5%;
-    }
+.choice {
+  font-size: clamp(14px, 4vw, 16px);
+  padding: 14px 8px 14px 14px;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  text-align: left;
+  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+  background: #fff;
+}
 
-    .choice {
-      font-size: 4vw;
-      padding: 14px 8px 14px 14px;
-      border-radius: 12px;
-      border: none;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      cursor: pointer;
-      text-align: left;
-      transition: 0.2s;
-    }
+.choice:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.12);
+}
 
-    .choice:hover {
-      transform: translateY(-2px);
-    }
+.choice.red   { color: #FF6B6B;  border: 2px solid #ffcdd2; }
+.choice.blue  { color: #5EA6FF;  border: 2px solid #bbdefb; }
+.choice.orange{ color: #FFA55E;  border: 2px solid #ffe0b2; }
 
-    .choice.red {
-      background: #fff;
-      color: #FF9494;
-      border: 2px solid #ffcdd2;
-    }
+/* ===== Responsive Tweaks ===== */
+/* 480px〜：少し広い端末向け */
+@media (min-width: 480px) {
+  .container { background-size: 34%; }
+  .step-indicator { gap: 12px; }
+  .progress { width: min(55%, 320px); }
+}
 
-    .choice.blue {
-      background: #fff;
-      color: #87B9FF;
-      border: 2px solid #bbdefb;
-    }
+/* 768px〜：タブレット向け */
+@media (min-width: 768px) {
+  .container { background-size: 30%; }
+  header { padding: 16px 24px; }
+  .question { padding: 24px; }
+  .choices { padding: 0 24px 24px; gap: 18px; }
+}
 
-    .choice.orange {
-      background: #fff;
-      color: #FFC78E;
-      border: 2px solid #ffe0b2;
-    }
-
-    /* ------- メディアクエリ ------- */
-    @media (min-width: 768px) {
-      .header-title {
-        font-size: 20px;
-      }
-
-      .choice {
-        font-size: 16px;
-      }
-
-      .question {
-        font-size: 18px;
-      }
-
-      .step-indicator p {
-        font-size: 16px;
-      }
-
-      .back, .menu {
-        font-size: 20px;
-      }
-    }
+/* ユーザーが簡易アニメーションを希望する場合の配慮 */
+@media (prefers-reduced-motion: reduce) {
+  .choice { transition: none; }
+  .choice:hover { transform: none; }
+}

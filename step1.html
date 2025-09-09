@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <header>
-      <span class="back" onclick="goBackToStep1()">←</span>
+      <span class="back" onclick="goBackToStep0()">←</span>
       <h1 class="header-title">MeLAB</h1>
       <span class="menu">☰</span>
     </header>
@@ -42,10 +42,11 @@
       });
     });
 
-    function goBackToStep1() {
+    function goBackToStep0() {
       localStorage.removeItem("answer1");
-      window.location.href = "index.html";
+      window.location.href = "step0.html";
     }
+
   </script>
 </body>
 </html>
